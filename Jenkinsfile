@@ -2,7 +2,7 @@ pipeline {
 
     agent any
     environment {
-        SONAR_LOGIN = credentials('sonarqube-login')
+        SONAR_LOGIN = credentials('sonar-tokin:')
         MAVEN_OPTS = '-Dmaven.repo.local=/home/jenkins/.m2/repository'
     }
     stages {
