@@ -1,0 +1,51 @@
+datree : validation
+sonarqube quality analysis(see bugs)
+sonarqube quality gate
+sonartype nexus repository
+helm chart
+docker image (container)
+apache maven (build automation tool)
+github(SCM)
+
+
+
+deployment:
+kubernetes
+argocd
+
+
+flowchat: developer --->> github .>>>jenkins>>maven>>sonarqube>>>docker>>sonartype nexus>>>helm>>>daatree>> kubernetes(argocd)
+
+
+create a new branch and do sonarqube analysis
+static code analysis
+quality gate check
+if check is failed , we send email 
+if not, we continue
+start writing pipeline multistage
+write multistage docker file  and build an image
+(we dont need to install maven)
+store differnt images in nexus instead of dockerhub as a private repository
+configure datree with jenkins
+then check if there is any misconfiguration or syntax error using datree and helm chart
+if check is failed , we send email 
+if not, we continue
+push the helm chart to nexus
+manual approval
+
+
+then cd private
+deploying to kubernetes
+
+.
+we need 5 server
+jenkins
+sonarqube
+master  (kubeadm)
+node
+nexus
+
+after all setups
+use vi /opt/nexus/bin/nexus.rc
+uncomment the file and add nexus then save
+launch with sudo -u nexus /opt/nexus/bin/nexus start
