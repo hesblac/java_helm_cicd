@@ -1,13 +1,14 @@
 pipeline {
 
     agent any
+
     environment {
 
         MAVEN_OPTS = '-Dmaven.repo.local=/home/jenkins/.m2/repository'
     }
     stages {
 
-        stage('sonear quality check') {
+        stage('Sonar quality check') {
             
             agent{
 
@@ -19,7 +20,7 @@ pipeline {
 
                 script{
 
-                    withSonarQubeEnv(credentialsId: 'sonar-tokin') {
+                    withSonarQubeEnv(credentialsId: 'sonar-pass') {
                         sh 'mvn clean package sonar:sonar'
                 }
                 }
