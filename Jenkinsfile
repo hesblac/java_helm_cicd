@@ -1,7 +1,10 @@
 pipeline {
 
     agent any
-
+    environment {
+        SONAR_LOGIN = credentials('sonarqube-login')
+        MAVEN_OPTS = '-Dmaven.repo.local=/home/jenkins/.m2/repository'
+    }
     stages {
 
         stage('sonear quality check') {
