@@ -42,8 +42,8 @@ pipeline {
                 script{
 
                     // Install Maven on the server
-                   // sh 'sudo apt update'
-                    sh 'sudo apt install -y maven'
+                    sh 'sudo -S apt update'
+                    sh 'sudo -S apt install -y maven'
 
                     withSonarQubeEnv(credentialsId: 'sonar-pass') {
                         sh 'mvn clean package sonar:sonar'
