@@ -2,10 +2,6 @@ pipeline {
 
     agent any
 
-    environment {
-
-        MAVEN_OPTS = '-Dmaven.repo.local=/home/jenkins/.m2/repository'
-    }
     stages {
 
         stage('Sonar quality check') {
