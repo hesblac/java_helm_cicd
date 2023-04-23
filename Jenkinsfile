@@ -10,7 +10,7 @@ pipeline {
 
                 docker{
                     image 'maven'
-                   // args '-u root --userns=host'
+                    args '-u root --userns=host'
                 }
             }
             steps{
