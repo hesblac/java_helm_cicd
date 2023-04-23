@@ -35,7 +35,7 @@ pipeline {
 
         stage('Sonar quality check') {
             
-            agent any
+            // agent any
             
             steps{
 
