@@ -10,7 +10,7 @@ pipeline {
 
                 docker{
                     image 'maven'
-                    args '-u root --userns=host'
+                   // args '-u root --userns=host'
                 }
             }
             steps{
@@ -31,6 +31,16 @@ pipeline {
                 
                 waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
                 
+                }
+            }
+        }
+        stage('docker build & docker push to nexus repo'){
+
+            steps{
+
+                script{
+
+
                 }
             }
         }
