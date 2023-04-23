@@ -3,36 +3,27 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
-    checkout scm
-  }
-  stage('SonarQube Analysis') {
-    def mvn = tool 'Default Maven';
-    withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarjenks -Dsonar.projectName='sonarjenks'"
-    }
-  }
 
-    //     stage('Sonar quality check') {
+        stage('Sonar quality check') {
             
-    //         agent{
+            agent{
 
-    //             docker{
-    //                 image 'maven'
-    //                // args '-u root --userns=host'
-    //             }
-    //         }
-    //         steps{
+                docker{
+                    image 'maven'
+                   // args '-u root --userns=host'
+                }
+            }
+            steps{
 
-    //             script{
+                script{
 
-    //                 withSonarQubeEnv(credentialsId: 'sonar-jenk') {
-    //                     sh 'mvn clean package sonar:sonar'
-    //             }
-    //             }
-    //         }
-    //     }
-     }
+                    withSonarQubeEnv(credentialsId: 'sonar-token') {
+                        sh 'mvn clean package sonar:sonar'
+                }
+                }
+            }
+        }
+    }
 
 }
 
