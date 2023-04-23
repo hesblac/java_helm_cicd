@@ -45,7 +45,7 @@ pipeline {
                     // sh 'sudo -S apt update'
                     // sh 'sudo -S apt install -y maven'
 
-                    withSonarQubeEnv(credentialsId: 'sonar-pass') {
+                    withSonarQubeEnv(credentialsId: 'sonar-jenk') {
                         sh 'mvn clean package sonar:sonar'
                     }
                 }
