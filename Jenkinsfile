@@ -39,9 +39,7 @@ pipeline {
             steps{
 
                 script{
-                sh """
-                docker version
-                """
+             
 
                 }
             }
