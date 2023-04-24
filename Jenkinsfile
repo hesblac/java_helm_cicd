@@ -75,6 +75,22 @@ pipeline {
                 }
             }
         }
+        stage('pushing the helm chat to nexus repo.'){
+
+            steps{
+
+                script{
+                withCredentials([string(credentialsId: 'nexus_passwd', variable: 'nexus_creds')]) {
+                     dir('kubernetes/myapp/') {
+                    sh '''
+                    helmversion=$(helm show chart myapp | grep version | cut -d -f 2 | tr -d ' ')
+                    curl -u admin:$nexus_password http://44.210.129.66:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v '
+                    '''
+                    }
+                }
+                }
+            }
+        }
     }
     post {
 		always {
