@@ -67,7 +67,7 @@ pipeline {
                     dir('kubernetes/myapp/') {
                         withEnv(['DATREE_TOKEN=da46896b-9718-4dc0-8f65-3e516a1cbf91']) {
                         
-                            sh 'helm datree test *' 
+                            sh 'helm datree test myapp' 
                         }
                    
                     }
@@ -84,6 +84,7 @@ pipeline {
                      dir('kubernetes/myapp/') {
                     sh '''
                     helmversion=$(helm show chart myapp | grep version | cut -d -f 2 | tr -d ' ')
+                    tar -tzf myapp-${helmversion}.tgz myapp/
                     curl -u admin:$nexus_password http://44.210.129.66:8081/repository/helm-repo/ --upload-file myapp-${helmversion}.tgz -v '
                     '''
                     }
